@@ -44,6 +44,12 @@
   version = "v1.7.3"
 
 [[projects]]
+  name = "github.com/mattn/go-runewidth"
+  packages = ["."]
+  revision = "9e777a8366cce605130a531d2cd6363d07ad7317"
+  version = "v0.0.2"
+
+[[projects]]
   branch = "master"
   name = "github.com/mitchellh/go-homedir"
   packages = ["."]
@@ -54,6 +60,12 @@
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   revision = "06020f85339e21b2478f756a78e295255ffa4d6a"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/nsf/termbox-go"
+  packages = ["."]
+  revision = "aa4a75b1c20a2b03751b1a9f7e41d58bd6f71c43"
 
 [[projects]]
   name = "github.com/pelletier/go-toml"
@@ -130,7 +142,13 @@
 [[projects]]
   name = "github.com/xanzy/go-gitlab"
   packages = ["."]
-  revision = "c85e4e9d786c10e15e28446456f0e8918561b2d9"
+  revision = "ec65bc7934094df33cb05d541a4ffadcd1f64861"
+
+[[projects]]
+  branch = "rect_meta"
+  name = "github.com/zaquestion/gocui"
+  packages = ["."]
+  revision = "0770f1c8c6f24b7a7da8e4738b50635206965ef0"
 
 [[projects]]
   branch = "master"
@@ -159,6 +177,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "c71a3581e8f87d3e7a6b305500da8f6c22db51f9e62f2df609a07da401d166ff"
+  inputs-digest = "aa4ee3804a8ee35f3c13b4f190b2e8a52ef6f3e34584117a07b8c1a392101886"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/pkg/errors"
 	"github.com/xanzy/go-gitlab"
 	"github.com/zaquestion/lab/internal/git"
@@ -332,4 +333,34 @@ func Lint(content string) (bool, error) {
 		return false, errors.New(strings.Join(lint.Errors, " - "))
 	}
 	return lint.Status == "valid", nil
+}
+
+func CIJobs(pid interface{}, sha string) ([]gitlab.Job, error) {
+	pipelines, _, err := lab.Pipelines.ListProjectPipelines(pid)
+	if err != nil {
+		return nil, err
+	}
+	if os.Getenv("DEBUG") != "" {
+		spew.Dump(pipelines)
+	}
+	var target int
+	for _, p := range pipelines {
+		if p.Sha != sha {
+			continue
+		}
+		target = p.ID
+		break
+	}
+	jobs, _, err := lab.Jobs.ListPipelineJobs(pid, target, &gitlab.ListJobsOptions{})
+	if err != nil {
+		return nil, err
+	}
+	if os.Getenv("DEBUG") != "" {
+		spew.Dump(jobs)
+	}
+	// The jobs seem to be returned in reverse order
+	//for i, j := 0, len(jobs)-1; i < j; i, j = i+1, j-1 {
+	//	jobs[i], jobs[j] = jobs[j], jobs[i]
+	//}
+	return jobs, nil
 }
